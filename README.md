@@ -6,12 +6,11 @@ and projects from pdf / docx / doc resumes using OpenAI, returns JSON.
 ## Setup
 
 ```
-pip install -r requirements.txt
-export OPENAI_API_KEY=sk-...
+uv sync
 uvicorn main:app --reload
 ```
 
-Or drop the key in a `.env` file instead of exporting it, it's loaded automatically.
+Set OPENAI_API_KEY in a `.env` file, it's loaded automatically.
 
 Open http://localhost:8000/docs and upload a resume on the /parse endpoint.
 
@@ -47,15 +46,5 @@ that need a lot of post-processing to turn into structured records, while
 an LLM handles the layout differences between resumes and gives the target
 JSON directly. Step 3 covers the hallucination risk that comes with that.
 
-## Tests
-
-```
-pytest tests.py -v
-```
-
-samples/ has a handful of intentionally messy resumes (generate them with
-`python samples/generate_samples.py`) - a 2 page pdf with three jobs in
-different date formats, a true two column pdf, a docx with contact info
-and skills inside tables, a sidebar style pdf, and a docx where even the
-work experience section is a table. Extraction and validation tests run
-offline, the full end-to-end test runs only when OPENAI_API_KEY is set.
+samples/ has a few sample resumes to try it on, including a two column
+layout and a sidebar style layout.
