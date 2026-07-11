@@ -1,8 +1,3 @@
-"""Extracts info from pdf/docx/doc resumes using OpenAI and returns JSON.
-
-Usage: python resume_parser.py resume.pdf
-"""
-
 import json
 import os
 import re
@@ -84,7 +79,6 @@ def flag_unmatched(label, values, plain_text, warnings):
 
 
 def clean_result(data, text):
-    """Drop or flag values the model may have made up."""
     warnings = []
     contact = data.get("contact_information") or {}
 
